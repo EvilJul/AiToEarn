@@ -71,6 +71,8 @@ docker compose up -d
 
 > 首次启动会自动创建管理员账号并自动登录，无需手动注册。
 
+默认业务渠道仅保留小红书。其他平台在 `project/aitoearn-backend/apps/aitoearn-server/config/config.yaml` 中设为 `hidden`，不会出现在账号连接和发布平台选项中。修改已有部署的配置后，运行 `docker compose restart aitoearn-server` 并刷新页面生效；仅隐藏渠道无需重建前端镜像。恢复平台前需配置其凭据并调整状态。
+
 ### 第 3 步：配置 Relay 中继（强烈推荐）
 
 > **为什么要配 Relay？**

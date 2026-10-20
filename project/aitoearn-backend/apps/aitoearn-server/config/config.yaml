@@ -53,7 +53,7 @@ channel:
   shortLink:
     baseUrl: https://localhost/api/shortLink/
   bilibili:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     redirectUri: https://localhost/api/v2/channels/accounts/auth/bilibili/callback
@@ -74,7 +74,7 @@ channel:
       clientSecret: douyin-miniapp-client-secret
       sandbox: false
   facebook:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     graphApiVersion: v25.0
@@ -90,7 +90,7 @@ channel:
       - pages_manage_engagement
       - read_insights
   kwai:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     redirectUri: https://localhost/api/v2/channels/accounts/auth/KWAI/callback
@@ -100,7 +100,7 @@ channel:
       - user_video_publish
       - user_video_info
   instagram:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     graphApiVersion: v25.0
@@ -113,7 +113,7 @@ channel:
       - instagram_business_content_publish
       - instagram_business_manage_insights
   linkedin:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     redirectUri: https://localhost/api/plat/meta/auth/back
@@ -129,7 +129,7 @@ channel:
     status: hidden
     logoUrl: https://assets.aitoearn.ai/platforms/google-business.svg
   pinterest:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     redirectUri: https://localhost/api/v2/channels/accounts/auth/pinterest/callback
@@ -148,7 +148,7 @@ channel:
     appSecret: rednote-app-secret
     accessTokenUrl: https://edith.xiaohongshu.com/api/sns/v1/ext/access/token
   threads:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     redirectUri: https://localhost/api/v2/channels/accounts/auth/threads/callback
@@ -162,7 +162,7 @@ channel:
       - threads_location_tagging
       - threads_delete
   tiktok:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     redirectUri: https://localhost/api/v2/channels/accounts/auth/tiktok/callback
@@ -176,7 +176,7 @@ channel:
       - video.list
     pullFromUrlAllowedPrefixes: []
   twitter:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     redirectUri: https://localhost/api/v2/channels/accounts/auth/twitter/callback
@@ -194,10 +194,10 @@ channel:
       - media.write
   wechat:
     official:
-      status: coming_soon
+      status: hidden
       logoUrl: https://assets.aitoearn.ai/platforms/wechat-official.svg
     channels:
-      status: available
+      status: hidden
       appId: ""
       appSecret: ""
       token: aitoearn
@@ -205,7 +205,7 @@ channel:
       redirectUri: https://localhost/api/platcallback
       logoUrl: https://assets.aitoearn.ai/platforms/wechat-channels.svg
   youtube:
-    status: available
+    status: hidden
     clientId: ""
     clientSecret: ""
     redirectUri: https://localhost/api/v2/channels/accounts/auth/youtube/callback

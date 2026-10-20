@@ -95,7 +95,7 @@ services:
       - aitoearn-network
 
   rustfs-init:
-    image: minio/mc:latest
+    image: pgsty/mc:latest
     container_name: aitoearn-rustfs-init
     depends_on:
       rustfs:

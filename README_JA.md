@@ -283,6 +283,8 @@ docker compose up -d
 
 起動後、**[http://localhost:8080](http://localhost:8080)** を開けば使用可能。
 
+本リポジトリでは、小紅書のみをデフォルトで有効にしています。他のプラットフォームのアカウント接続・投稿の選択肢は、バックエンドの `config.yaml` にある `channel.<platform>.status: hidden`（WeChat は `channel.wechat.official/channels.status`）で非表示にしています。再度有効にする場合は、認証情報と状態を設定し、バックエンドを再起動してください。既存のプラットフォームコードは保持しています。
+
 #### Relayの設定（強く推奨）
 
 > **なぜRelayが必要？** コンテンツを公開するにはソーシャルメディアアカウント（TikTok、Instagram、YouTubeなど）へのログインが必要で、これらのプラットフォームのOAuthログインには開発者認証情報が必要です。Relayを設定すれば、公式aitoearn.aiの認証情報を直接借用して認証を完了できるため、**各プラットフォームで開発者アカウントを申請する必要がありません**。

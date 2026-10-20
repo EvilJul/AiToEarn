@@ -71,6 +71,8 @@ Visit: **[http://localhost:8080](http://localhost:8080)**
 
 > First startup auto-creates an admin account and logs you in automatically.
 
+Only Xiaohongshu is enabled as a business channel by default. Other platforms are set to `hidden` in `project/aitoearn-backend/apps/aitoearn-server/config/config.yaml` and are omitted from account connection and publishing options. After editing an existing deployment's configuration, run `docker compose restart aitoearn-server` and refresh the page; hiding channels does not require rebuilding the frontend image. Configure the credentials and update the status before restoring a platform.
+
 ### Step 3: Configure Relay (Strongly Recommended)
 
 > **Why configure Relay?**

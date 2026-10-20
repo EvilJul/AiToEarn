@@ -278,6 +278,8 @@ docker compose up -d
 
 Open **[http://localhost:8080](http://localhost:8080)** and you're ready to go.
 
+This repository enables only Xiaohongshu by default. Other account connection and publishing options are hidden through `channel.<platform>.status: hidden` in the backend `config.yaml` (`channel.wechat.official/channels.status` for WeChat). To restore a platform, configure its credentials, update its status, and restart the backend. Existing platform code is retained.
+
 #### Configure Relay (Strongly Recommended)
 
 > **Why Relay?** Publishing content requires logging into social media accounts (TikTok, Instagram, YouTube, etc.), which need OAuth developer credentials. With Relay, you can use the official aitoearn.ai credentials — **no need to register as a developer on each platform**.

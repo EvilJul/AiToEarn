@@ -284,6 +284,8 @@ docker compose up -d
 
 启动后打开 **[http://localhost:8080](http://localhost:8080)** 即可使用。
 
+本仓库默认仅启用小红书业务渠道，其他平台的账号连接和发布选项通过后端 `config.yaml` 的 `channel.<平台>.status: hidden` 隐藏（微信为 `channel.wechat.official/channels.status`）。如需恢复其他平台，配置对应凭据并调整状态后重启后端；原有平台代码保留。
+
 #### 配置 Relay（强烈推荐）
 
 > **为什么要配 Relay？** 发布内容需要登录社交媒体账号（抖音、小红书、TikTok 等），而这些平台的 OAuth 登录需要开发者凭据。配置 Relay 后，你可以直接借用官方 aitoearn.ai 的凭据完成授权，**不需要自己去各平台申请开发者账号**。
