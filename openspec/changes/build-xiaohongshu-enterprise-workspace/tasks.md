@@ -4,9 +4,9 @@
 - [x] 1.2 建立能力验证记录模板及演示/真实证据分类，配置行业、地区、企业时区、账号类型和部署域名；未知项保留待确认，不能写为已验证。
 - [ ] 1.3 在授权设备安装明确版本原插件，验证本地站点及企业域名的 API 注入、权限、版本和账号识别，保存脱敏证据。
 - [ ] 1.4 使用授权账号验证原插件图文填充、提交、链接回传和异常行为，记录原站账号/云服务依赖；没有账号时保持此任务未完成。
-- [ ] 1.5 核对插件源码来源、版本、构建、许可证及维护条件，记录复用、授权改造或自建路线及理由；不以网页仓库 MIT 推定扩展授权。
-- [ ] 1.6 分别核对评论、普通私信、小程序客服的客户权限与实际文档，输出 receive/send/autoReply 能力清单；缺失渠道设关闭。
-- [ ] 1.7 根据 1.5/1.6 形成适用分支清单，收敛第 9/10/12 节到实际路线并保留决策记录；未选任务不能当实现完成勾选，调整范围需同步 design/specs 并重新验证。
+- [x] 1.5 核对插件源码来源、版本、构建、许可证及维护条件，记录复用、授权改造或自建路线及理由；不以网页仓库 MIT 推定扩展授权。
+- [x] 1.6 分别核对评论、普通私信、小程序客服的客户权限与实际文档，输出 receive/send/autoReply 能力清单；缺失渠道设关闭。
+- [x] 1.7 根据 1.5/1.6 形成适用分支清单，收敛第 9/10/12 节到实际路线并保留决策记录；未选任务不能当实现完成勾选，调整范围需同步 design/specs 并重新验证。
 
 ## 2. G1 企业数据基础与权限（依赖 1.1）
 
@@ -69,18 +69,18 @@
 
 - [x] 8.1 在现有 plugin store 前增加执行适配器，复用现有 API 契约并定义能力样本；禁止仅凭版本推定未验证功能。
 - [x] 8.2 实现原插件及自建插件来源选择、权限和版本检查，检测多扩展冲突，不覆盖已选 API 或双重执行。
-- [ ] 8.3 将发布入口连接服务端任务、设备租约和进度；不支持审核许可的原插件仅开放人工辅助路径。
+- [x] 8.3 将发布入口连接服务端任务、设备租约和进度；不支持审核许可的原插件仅开放人工辅助路径。
 - [x] 8.4 完成插件安装、授权、账号失效、设备离线、不兼容及 unsupported 动作的诊断 UI，提供人工模式入口。
-- [ ] 8.5 使用协议样本验证 File/媒体 URL、话题、进度、取消及错误映射，防止网页显示成功而服务端仍未知。
+- [x] 8.5 使用协议样本验证 File/媒体 URL、话题、进度、取消及错误映射，防止网页显示成功而服务端仍未知。
 
-## 9. G3 原插件复用或授权改造分支（仅适用于 1.5 选定的路线）
+## 9. G3 原插件复用或授权改造分支（1.7 未选，不实施，保持未勾选）
 
 - [ ] 9.1 固定可交付的插件版本、下载来源、校验信息、许可与维护说明，并验证企业域名实际可安装连接。
 - [ ] 9.2 若取得授权源码，建立可复现构建并实现所需域名、任务审核许可和回执适配；未取得源码时不虚构改造完成。
 - [ ] 9.3 验证页面权限、登录失效、错误账号、版本不符和连接中断，按能力决定人工辅助或自动执行验收范围。
 - [ ] 9.4 在客户设备验证所选版本与 Web/API 组合并形成兼容记录；如失败更新路线决策，转第 10 节且保留人工发布。
 
-## 10. G3 自建小红书扩展分支（仅原插件/授权源码不能满足交付时）
+## 10. G3 自建小红书扩展分支（1.7 选定。实现完成前保持未勾选）
 
 - [ ] 10.1 初始化独立 `project/aitoearn-extension` pnpm + TypeScript + Manifest V3 工程，配置类型检查、构建和协议测试，根目录不新增统一 package。
 - [ ] 10.2 实现受信业务网页 bridge 与 content/background 消息协议，检查 origin、source、sender、动作及负载，补充非授权来源拒绝用例。
@@ -104,7 +104,7 @@
 - [x] 11.7 实现 expectedVersion 原子接管，覆盖双销售竞争；人工模式先验证唯一负责人和完整审计。
 - [x] 11.8 联调咨询工作台、线索详情、回复建议、接管及跟进页面，验证窄屏可完成查看与接管。
 
-## 12. G4 获授权自动消息分支（依赖 1.6、11，仅针对选定真实渠道）
+## 12. G4 获授权自动消息分支（1.7 未选。三渠道关闭，保持未勾选）
 
 - [ ] 12.1 固定所选渠道正式文档、授权范围、账号、收发/回调契约、时间窗、配额及费用，记录能力与样本；缺失时不实现猜测端点。
 - [ ] 12.2 实现渠道验证、验签/解密和按 binding 解析企业，消息先持久化去重再异步处理，在平台要求时间内回执。
@@ -122,7 +122,7 @@
 - [ ] 13.5 如采用自建/授权改造扩展，运行其类型检查、构建、协议及恢复测试，核对最终安装包与源码版本一致。
 - [x] 13.6 编写并执行关键流程端到端用例：两企业越权、审核改稿、人工发布、重复领取、未知结果、消息重放及接管竞争；不以静态页面测试代替业务检查。
 - [x] 13.7 完成浅深主题和三种目标尺寸的视觉/键盘检查，修复长标题、多图、弹窗、空数据和失败状态，保存前后证据。
-- [ ] 13.8 回归原多平台导航、既有用户素材、发布入口及插件接入，确认关闭企业模式后原功能可用。
+- [x] 13.8 回归原多平台导航、既有用户素材、发布入口及插件接入，确认关闭企业模式后原功能可用。
 
 ## 14. G5 真实验收与企业交付（不得用模拟通过替代）
 
@@ -141,3 +141,4 @@
 - 2.7/5.2: `generation.*` and the authenticated internal planner bridge reuse the configured provider, persist task/attempt/source linkage and metering, retain unknown costs and provide deduplicated administrator reconciliation. Provider calls are mocked in local verification; real connectivity is not claimed.
 - 6.7: the MongoDB integration runner completes ten synthetic generated samples through source/topic selection, review (including rejection), material export, manual result and verification. No real account is used; these fixtures do not complete 14.1/14.2.
 - 13.3: final Web type-check, affected ESLint and full production build pass. Browser tests pass 14/14. Detailed boundaries and repeatable commands: `docs/secondary-development/implementation/verification.md`.
+- 1.5/1.7: delivery route is a self-built extension. Evidence is the CRX 3.3.11 static manifest and the absence of source, build, modification, redistribution and maintenance rights. Web MIT is not used as authorization. Sections 9 and 12 are not selected and stay unchecked. Section 10 is selected but unchecked until implemented. Original plugin install and account checks stay not_tested.

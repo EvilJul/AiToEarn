@@ -34,7 +34,7 @@
 
 G0 输出脱敏能力记录：部署域名、Web/插件版本、账号类型、平台、能力项、外部依赖、操作样本、证据、失败原因、结论及下一步。结论为 `verified/unsupported/blocked/not_tested`，模拟结果另设证据类型，不写成真实验证通过。账号及企业行业尚缺时使用明确标注的演示样本推进原型和本地逻辑，真实账号验收保持未完成。
 
-插件路线：原插件在企业域名上通过所需验证且授权/维护安排满足交付时复用；否则检查是否能取得对应源码与构建授权；两者均不可用时执行自建分支。没有插件时先启用人工发布，不等待不确定外部权限阻塞全部业务。
+插件路线已选定为自建扩展，工程落点是 `project/aitoearn-extension/`。仓库没有该扩展源码，OSS 上的 CRX 3.3.11 只有静态清单，包内第三方库许可不能授权修改或独立分发，网页仓库 MIT 不能代替。因此不走原插件复用，也不走授权改造。原插件的企业域名安装和授权账号发布仍是 not_tested，这项决定不把未安装写成原插件已证实不可用。自建扩展完成前，人工发布继续可用；自动提交保持关闭，直到真实验证通过并由企业启用。第 12 节不实施：评论、普通私信、小程序客服的 receive/send/autoReply 均关闭。
 
 考虑过一开始完整重写多平台插件，但首期成本及维护范围过大。也不接受仅安装未知版本 CRX 就认定可长期企业交付。
 
@@ -173,8 +173,7 @@ Web 在现有插件 store 上增加适配层，保留已使用的 `checkPermissi
 
 - 企业行业、城市、品牌资料、素材、审核人、角色人数与小红书账号资质。默认均可配置，演示样本不得冒充客户事实。
 - 企业部署域名、目标浏览器、是否可提供在线执行设备。缺失时先完成本地协议及人工模式，设备验收待完成。
-- 原插件对私有域名的支持、源码与分发维护条件。由 G0 输出路线结论，不阻塞企业基础和 UI 原型。
-- 首期咨询究竟采用人工辅助、评论、普通私信还是小程序客服；相关文档、权限和费用由真实联调确定。
+- 首期咨询采用人工录入、回复建议和销售接管。评论、普通私信、小程序客服未取得权限和契约，不进入本次实现。
 - 通知渠道、销售响应与升级时间、自审例外、知识有效期、数据保存/导出/删除策略。首期站内通知、禁止自审，其他阈值配置化，不默认发送外部消息。
 - 自动化、人工辅助两种交付范围如何写入客户验收。只有客户明确选择并完成对应样本，才能关闭真实交付任务；无法取得外部条件时不得勾选为完成。
 
@@ -189,7 +188,7 @@ Web 在现有插件 store 上增加适配层，保留已使用的 `checkPermissi
 - Lead notification events are embedded durably in the lead write. In-app delivery is idempotent, retried from persisted pending events, and response/follow-up reminders are configurable. Notification acknowledgement does not claim a conversation. External notification providers are not configured or sent to by default.
 - Enterprise builds suppress the shared bootstrap browser token. Server enterprise mode rejects the reserved shared bootstrap identity and marked initialization tokens, including API keys belonging to that reserved account; non-default JWT signing material is validated before enterprise mode starts. Existing single-user mode remains opt-in compatible. Existing shared deployments require explicit credential and ownership migration.
 - Identity brand colors are preserved. Action-gradient stops and brand text ink are separated to meet the stated contrast target; the canonical changes are in Web DESIGN.md and globals.css. This is a surface-luminance correction, not a new brand direction.
-- Original extension package inspection is evidence only: manifest/version/hash are recorded without installing or executing the extension. Static home-bridge matches do not by themselves prove or disprove dynamic private-domain support. Customer domain/account checks, extension source/redistribution/maintenance conditions, actual platform messages and customer acceptance remain open gates.
+- Original extension package inspection is evidence only: manifest/version/hash are recorded without installing or executing the extension. Static home-bridge matches do not prove or disprove dynamic private-domain support. The selected delivery route is a self-built extension because source, reproducible build, modification rights, independent redistribution and maintenance terms are absent. Original-plugin install and authorized-account checks stay not_tested. Reuse and authorized modification are out of this change. Comment, direct-message and miniapp customer-service automation stay closed. Manual publishing remains available until the self-built extension is verified.
 
 ### Configured model reuse
 

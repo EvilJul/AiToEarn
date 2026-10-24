@@ -38,7 +38,7 @@ src/store/
 | `thumbnailCache.ts`       | `useThumbnailCacheStore`                 | 视频缩略图缓存                                           | 是              |
 | `draft-box/`              | `usePlanDetailStore` / `usePlanTabStore` | 草稿箱计划、详情、AI 生成配置与媒体列表同步桥            | 部分 IndexedDB  |
 | `agent/`                  | `useAgentStore`                          | AI Agent 任务管理（多任务隔离、SSE、工作流）             | 否              |
-| `plugin/`                 | `usePluginStore`                         | 浏览器插件（安装检测、账号同步、发布、发布详情弹窗状态） | 否              |
+| `plugin/`                 | `usePluginStore`                         | 浏览器插件（安装检测、账号同步、发布、发布详情弹窗状态）。`enterpriseExecution.ts` 只连接企业任务租约与进度，不调用旧渠道发布队列，自动提交保持关闭 | 否              |
 
 ## 关键边界
 

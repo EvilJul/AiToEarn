@@ -8,6 +8,8 @@
 
 对外显示导航需要 NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED=true；后端另需 enterpriseOps.enabled=true。停用企业只允许管理员在设置中恢复；模型与平台授权各自验证，不由企业开关自动开启。
 
+发布管理在扩展声明审核协议且列表中已有同账号在线执行设备时，领取服务端任务并显示租约和准备进度。未声明审核协议时只保留素材包、回填和核验。页面上的成功只跟随服务端 `published`，插件回调不能把未知结果显示成已发布。自动提交保持关闭。
+
 图片模板：BrandTemplateComposer 提供封面/真实案例/FAQ，复用上传回调保留资源 ID；不调用外部模型。RevisionHistory/RevisionEvidence 展示业务修订与已审事实来源。账户或企业切换会清理编辑及模板缓存。工作台计数链接到对应状态筛选，用量台账显示已有计量，费用未对账时保持未知。
 
 企业 AI 编排复用现有默认规划模型：选择已批准资料后生成，人工确认文案，再使用授权照片/品牌模板配图并保存审核。完整段落按来源校验，缺少依据不补造事实。生成任务和每次显式重试保存在用量记录，关闭编辑器不取消服务端任务；未确认调用不自动重试。已知 tokens 和供应商请求 ID 按返回记录，费用未知时不记零；管理员可依据供应商凭证调用 `POST /enterprise-ops/enterprises/:enterpriseId/usage/:id/reconcile` 提交 `cost/currency/reference` 对账，相同凭证与金额可幂等重放，冲突被拒绝。

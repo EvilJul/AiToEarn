@@ -6,6 +6,8 @@
 
 不提供未授权平台的自动私信或评论发送。所有操作必须检查 code === 0。页面状态和业务私有工具放 enterprise 页面目录。
 
+浏览器执行只调用已有的 `claim`、`renew-lease` 和 `events`。网页不调用 `authorize-submit`，也不把人工任务写入旧渠道 flow/task。`events` 只回传 `failed` 或 `unknown`。
+
 补充接口包括：知识具体版本、内容具体修订及审核历史、授权图片源、执行设备/资源撤销、线索跟进、站内通知已读。人工消息支持 requestId 幂等；原始 API 成功码仍以 number 0 判断。
 
 企业 AI 编排复用现有默认规划模型：选择已批准资料后生成，人工确认文案，再使用授权照片/品牌模板配图并保存审核。完整段落按来源校验，缺少依据不补造事实。生成任务和每次显式重试保存在用量记录，关闭编辑器不取消服务端任务；未确认调用不自动重试。已知 tokens 和供应商请求 ID 按返回记录，费用未知时不记零；管理员可依据供应商凭证调用 `POST /enterprise-ops/enterprises/:enterpriseId/usage/:id/reconcile` 提交 `cost/currency/reference` 对账，相同凭证与金额可幂等重放，冲突被拒绝。

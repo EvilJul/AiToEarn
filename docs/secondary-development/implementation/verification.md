@@ -1,6 +1,6 @@
 # 企业工作台实施验证记录
 
-本记录区分本地实现证据和客户真实验收。OpenSpec 变更为 `build-xiaohongshu-enterprise-workspace`，schema 为 `spec-driven`，当前完成 58/96 项。未完成项包含互斥插件路线及尚无外部条件的真实验收，不应直接归档。
+本记录区分本地实现证据和客户真实验收。OpenSpec 变更为 `build-xiaohongshu-enterprise-workspace`，schema 为 `spec-driven`，当前完成 64/96 项。未完成项包含已选定但未实现的自建扩展，以及尚无外部条件的真实验收，不应直接归档。
 
 ## 已通过的检查
 
@@ -23,7 +23,9 @@
 
 集成 runner 为 `apps/aitoearn-server/tests/enterprise/mongodb.integration.cjs`，依赖先完成构建及本机专用 Mongo `127.0.0.1:27028`；只创建和清理自身随机命名的测试数据库。鉴权 actor、素材、账号与模型调用使用明确的测试替身。它不等于客户 JWT、对象存储、模型或平台真实联调。
 
-浏览器测试配置为 `project/aitoearn-web/tests/enterprise/playwright.config.ts`。预览使用企业开关、`NEXT_PUBLIC_API_URL=/api` 和本机 6061 端口；API 通过 fixtures 拦截，并屏蔽外部站点请求。执行 `pnpm exec playwright test --config tests/enterprise/playwright.config.ts`。原路由导航检查是在企业构建内进行，未据此勾选完整的关闭企业模式回归 13.8。
+浏览器测试配置为 `project/aitoearn-web/tests/enterprise/playwright.config.ts`。预览使用企业开关、`NEXT_PUBLIC_API_URL=/api` 和本机 6061 端口；API 通过 fixtures 拦截，并屏蔽外部站点请求。执行 `pnpm exec playwright test --config tests/enterprise/playwright.config.ts`。该配置已忽略 `personal-regression.spec.ts`。原先在企业构建内点击原导航，不能代替关闭企业模式的 13.8。
+
+关闭企业模式回归使用 `tests/enterprise/playwright.personal.config.ts`，预览命令为 `NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED=false NEXT_PUBLIC_API_URL=/api pnpm exec next dev -p 6062`。执行 `pnpm exec playwright test --config tests/enterprise/playwright.personal.config.ts tests/enterprise/personal-regression.spec.ts tests/enterprise/execution.spec.ts tests/enterprise/protocol.spec.ts`。2026-10-24 在 `project/aitoearn-web` 先通过 `pnpm run type-check`，随后上述 Playwright 8/8 通过。13.8 覆盖原导航、既有草稿标题、AI 生成素材、发布页“新建作品”和浏览器插件弹窗；直接打开 `/zh-CN/enterprise` 时侧边栏仍保留原导航，不出现“企业工作台”入口。8.3/8.5 使用协议样本和页面内测试扩展：领取与续租发生，媒体 File 与 URL、话题分开传递，自动提交保持关闭；插件回调成功时页面显示“结果未知”，不显示“发布已核验”。未安装真实 CRX，未使用真实小红书账号，未调用 `authorize-submit` 或旧渠道 flow/task。`PublishJobVo` 增加的租约字段用与网页相同的 Zod 3.25 模式核对了缺省、null 和日期，未因此重跑完整 Mongo 集成。
 
 ## 界面证据
 
@@ -45,10 +47,10 @@
 
 ## 仍需完成
 
-- G0：企业行业/地区/时区、正式部署域名、浏览器与设备、授权账号；对应版本扩展的安装、注入、填充、回执及异常验证，源码/分发/维护许可确认后选择复用或自建分支。
-- 执行联调：任务 6.1 的既有 flow/task 映射、8.3 的实际浏览器驱动、8.5 的完整媒体/进度/取消契约，需要选定真实执行路线。当前人工任务独立持久化，不向旧队列重复投递。
-- 渠道：正式接口文档、客户授权、回调/收发限制和真实会话样本，之后才能实施所选自动收发分支。
-- 验收：实际模型连通、企业授权的十份知识样稿与三篇真实发布、客户设备兼容、真实销售试点、完整个人模式回归、部署回退及备份恢复演练。
+- G0：企业行业/地区/时区、正式部署域名、浏览器与设备、授权账号。插件路线已定为自建；原插件安装和账号验证保持 not_tested。第 9、12 节未选。
+- 执行联调：任务 6.1 仍不把人工任务映射进旧渠道发布队列。8.3/8.5 已用本地协议样本连接领取、租约、进度、取消和错误映射；真实浏览器驱动、授权账号和选定插件路线仍未执行。自动提交保持关闭。
+- 渠道：评论、普通私信、小程序客服的 receive/send/autoReply 均关闭，结论为 blocked。正式接口文档、客户授权、回调/收发限制和真实会话样本仍缺失，第 12 节不实施。
+- 验收：实际模型连通、企业授权的十份知识样稿与三篇真实发布、客户设备兼容、真实销售试点、部署回退及备份恢复演练。关闭企业模式后的原导航、素材、发布入口和插件接入已有本地回归，不等于第 14 节客户验收。
 - 交付：所选插件版本及许可证/维护安排、完整依赖/字体/镜像许可、供应商真实费用与人工时记录。已有手册和直接复用依赖许可说明不能替代这些记录。
 
 尚未执行部署、真实发布、真实模型调用、客户会话发送或 OpenSpec archive。临时预览和测试 Mongo 容器在检查后停止；测试仅删除自身随机数据库。
