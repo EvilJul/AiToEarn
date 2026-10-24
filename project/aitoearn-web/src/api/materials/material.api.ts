@@ -150,7 +150,9 @@ export async function uploadToOss(
           if (xhr.status >= 200 && xhr.status < 300) {
             try {
               // 返回确认接口返回的最终访问URL
-              resolve(await confirmUpload(presignedData.id, presignedData.url, opts.publicUploadId))
+              const url = await confirmUpload(presignedData.id, presignedData.url, opts.publicUploadId)
+              opts.onUploaded?.({ id: presignedData.id, url })
+              resolve(url)
             }
             catch (confirmError) {
               console.error('确认上传失败:', confirmError)
@@ -191,7 +193,9 @@ export async function uploadToOss(
       }
 
       // 返回确认接口返回的最终访问URL
-      return confirmUpload(presignedData.id, presignedData.url, opts.publicUploadId)
+      const url = await confirmUpload(presignedData.id, presignedData.url, opts.publicUploadId)
+      opts.onUploaded?.({ id: presignedData.id, url })
+      return url
     }
   }
   catch (error) {

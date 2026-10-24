@@ -16,6 +16,7 @@ export interface TokenPayload {
   readonly name?: string
   readonly shopDomain?: string
   readonly exp?: number
+  readonly sharedBootstrap?: boolean
 }
 
 export type AitoearnAuthOptions<TTokenInfo = unknown> = AitoearnAuthConfig & {

@@ -25,3 +25,5 @@
 | `config-editor/` | 配置管理、配置校验、保存、服务重启与恢复检查。     | `config-editor/README.md` |
 | `materials/`     | OSS 上传、媒体库、草稿素材、素材组与公开素材查询。 | `materials/README.md`     |
 | `platforms/`     | 平台专项能力，例如发布、互动、作品校验和平台参数。 | `platforms/README.md`     |
+
+- `enterprise/`：企业知识、选题、审核、人工发布与咨询跟进。

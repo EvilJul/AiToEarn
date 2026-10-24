@@ -5,6 +5,8 @@ colors:
   brand-purple: 'oklch(0.74 0.17 3)'
   brand-cyan: 'oklch(0.71 0.17 294)'
   gradient-foreground: 'oklch(0.985 0 0)'
+  brand-action-purple: 'oklch(0.52 0.17 3)'
+  brand-action-cyan: 'oklch(0.52 0.17 294)'
   background: 'oklch(1 0 0)'
   foreground: 'oklch(0.145 0 0)'
   card: 'oklch(1 0 0)'
@@ -265,3 +267,13 @@ The publish editor's `@topic` / `#tag` chip: inline text with a thin brand-gradi
 - **Don't** ship inconsistent component vocabulary: the same button, input, and dialog shape must look identical across every platform's flow.
 - **Don't** use native `<input type="number">`; it has inconsistent browser behavior (can't clear, spinners).
 - **Don't** add gratuitous motion — transitions are 150–250ms and convey state, never choreography.
+
+## Accessible action and text roles
+
+The identity colors remain Brand Magenta-Rose and Brand Cyan-Violet. Surfaces carrying near-white text use separate action stops: `--brand-action-purple: oklch(0.52 0.17 3)` and `--brand-action-cyan: oklch(0.52 0.17 294)`. `--gradientBackColor` uses these stops in both themes; this preserves the signature hues while making small action labels readable.
+
+Use `text-brand-ink` for brand-colored body text, links and navigation labels: it resolves to the action cyan-violet in light theme and identity cyan-violet in dark theme. Identity tokens are not a substitute for readable small text. The light-theme focus ring also uses brand ink. White labels must use action surfaces or the action gradient, including count badges and calendar events. Work surfaces remain neutral; the five permitted gradient roles are unchanged.
+
+Validate normal text at 4.5:1 or higher against the actual background in both themes. Darker action stops change surface luminance, not the brand identity palette. Existing `bg-primary` surfaces outside this scope require a separate foreground/background audit; do not infer their contrast from gradient-button results.
+
+The original identity stops remain available for brand marks. Do not use those light identity colors as white-text action surfaces; `bg-gradient-back` now resolves to the accessible action stops. In the enterprise workspace, brand-colored normal text and navigation use `brand-ink`; selected count badges use the action gradient, and calendar event surfaces use action cyan-violet.

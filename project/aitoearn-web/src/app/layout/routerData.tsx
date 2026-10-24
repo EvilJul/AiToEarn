@@ -5,6 +5,7 @@
 
 import {
   Bot,
+  Building2,
   History,
   Home,
   Sparkles,
@@ -24,7 +25,10 @@ export interface IRouterDataItem {
   children?: IRouterDataItem[]
 }
 
+export const enterpriseRouterItem: IRouterDataItem = { name: 'Enterprise Workspace', translationKey: 'enterpriseWorkspace', path: '/enterprise', icon: <Building2 size={20} /> }
+
 export const routerData: IRouterDataItem[] = [
+  ...(process.env.NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED === 'true' ? [enterpriseRouterItem] : []),
   {
     name: 'Content Management',
     translationKey: 'header.draftBox',

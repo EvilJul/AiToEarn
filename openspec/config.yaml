@@ -1,0 +1,24 @@
+schema: spec-driven
+
+context: |
+  AiToEarn 是企业内容运营二次开发项目，首期聚焦小红书。
+  需求来源为 docs/secondary-development/requirements.md（R01–R12）及 feasibility-plan.md。
+  规划产物默认简体中文；需求使用 SHALL/MUST 及 Given/When/Then 等可验证约束。
+  project/aitoearn-backend 是 NestJS + Nx + pnpm，遵循该目录 AGENTS.md 和 CLAUDE.md。
+  project/aitoearn-web 是 Next.js + pnpm，遵循该目录 AGENTS.md、PRODUCT.md 和 DESIGN.md。
+  根目录没有统一 package；不要在根目录安装或构建业务依赖。
+  优先使用 codebase-memory MCP 发现代码；未索引或结果不足时可回退文件检索。
+  当前仓库已发现网页插件调用层，未发现完整浏览器扩展源码。
+  小红书发布、评论、普通私信、小程序客服必须分别验证，不能混为同一能力。
+  中国版 aitoearn.cn 和国际版 aitoearn.ai 的 Key、MCP、Relay 地址必须匹配。
+  功能实现、模拟验证、真实账号联调和企业验收是不同状态，不得混用。
+
+rules:
+  proposal:
+    - 明确首期范围、条件分支和后置能力，不把外部权限视为已经取得。
+  specs:
+    - 每项 Requirement 至少包含一个可验收的 Scenario，覆盖关键失败与权限边界。
+  design:
+    - 说明现有代码复用、数据模型、状态迁移、API 契约、插件缺失方案和回退策略。
+  tasks:
+    - 使用编号 checkbox，按依赖和交付阶段组织，列出验证方式；未实施任务不得勾选。

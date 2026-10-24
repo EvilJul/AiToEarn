@@ -212,4 +212,14 @@ export enum ResponseCode {
   // ========================================
   ApiKeyInvalid = 19000,
   RelayServerUnavailable = 19001,
+
+  // 19100-19199: enterprise-ops
+  EnterpriseDisabled = 19100,
+  EnterpriseAccessDenied = 19101,
+  EnterpriseVersionConflict = 19102,
+  EnterpriseInvalidOperation = 19103,
+  EnterpriseKnowledgeInvalid = 19104,
+  EnterpriseContentNotApproved = 19105,
+  EnterpriseCapabilityUnavailable = 19106,
+  EnterpriseResultUnknown = 19107,
 }

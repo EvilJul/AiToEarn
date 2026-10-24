@@ -54,7 +54,9 @@ export default async function RootLayout({
   params: Promise<{ lng: string }>
 }>) {
   const { lng } = await params
-  const autoLoginToken = process.env.AUTO_LOGIN_TOKEN?.trim() || undefined
+  const autoLoginToken = process.env.NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED === 'true'
+    ? undefined
+    : process.env.AUTO_LOGIN_TOKEN?.trim() || undefined
 
   return (
     <html lang={lng} dir={dir(lng)} suppressHydrationWarning>

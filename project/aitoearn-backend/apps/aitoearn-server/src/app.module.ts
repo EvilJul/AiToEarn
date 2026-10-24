@@ -18,6 +18,8 @@ import { ChannelsMcpModule } from './core/channels/mcp/channels.mcp.module'
 import { RelayModule } from './core/channels/relay/relay.module'
 import { ContentMcpModule } from './core/content/content-mcp.module'
 import { ContentModule } from './core/content/content.module'
+import { isSharedBootstrapIdentity } from './core/enterprise-ops/enterprise-auth.policy'
+import { EnterpriseOpsModule } from './core/enterprise-ops/enterprise-ops.module'
 import { PublishModule } from './core/publish-record/publish-record.module'
 import { ShortLinkModule } from './core/short-link/short-link.module'
 import { UnifiedMcpModule } from './core/unified-mcp/unified-mcp.module'
@@ -41,16 +43,19 @@ import { UserModule } from './core/user/user.module'
     AitoearnAuthModule.forRootAsync({
       inject: [UserRepository, ApiKeyRepository],
       useFactory: (userRepository: UserRepository, apiKeyRepository: ApiKeyRepository) => {
-        const getOpenUser = async (userId: string) => {
+        const getOpenUser = async (userId: string, payload?: TokenPayload) => {
           const user = await userRepository.getById(userId)
           if (!user || user.isDelete || user.status !== UserStatus.OPEN) {
+            throw new UnauthorizedException()
+          }
+          if (config.enterpriseOps.enabled && isSharedBootstrapIdentity(user.mail, payload?.sharedBootstrap)) {
             throw new UnauthorizedException()
           }
           return user
         }
         return {
           ...config.auth,
-          getTokenInfo: (payload: TokenPayload) => getOpenUser(payload.id),
+          getTokenInfo: (payload: TokenPayload) => getOpenUser(payload.id, payload),
           getTokenInfoByApiKey: async (apiKey: string) => {
             const keyHash = createHash('sha1').update(apiKey).digest('hex')
             const record = await apiKeyRepository.getByKeyHash(keyHash)
@@ -67,6 +72,7 @@ import { UserModule } from './core/user/user.module'
     AitoearnAiClientModule.forRoot(config.aiClient),
     AssetsModule,
     UserModule,
+    EnterpriseOpsModule.forRoot(config.enterpriseOps),
     ContentModule,
     ChannelsModule,
     PublishModule,

@@ -21,6 +21,7 @@ import { tiktokConfigSchema } from './core/channels/platforms/tiktok/tiktok.conf
 import { twitterConfigSchema } from './core/channels/platforms/twitter/twitter.config'
 import { wechatConfigSchema } from './core/channels/platforms/wechat/wechat.config'
 import { youtubeConfigSchema } from './core/channels/platforms/youtube/youtube.config'
+import { enterpriseJwtSecretSchema } from './core/enterprise-ops/enterprise-auth.policy'
 
 const httpUrlSchema = z.url({ protocol: /^https?$/ })
 
@@ -67,7 +68,11 @@ export const appConfigSchema = z.object({
   aiClient: aitoearnAiClientConfigSchema,
   channel: channelConfigSchema,
   relay: relayConfigSchema.optional(),
-})
+  enterpriseOps: z.object({
+    enabled: z.boolean().default(false).describe('启用企业运营工作台'),
+    browserExecutionEnabled: z.boolean().default(false).describe('启用已验证的企业浏览器执行协议'),
+  }).default({ enabled: false, browserExecutionEnabled: false }),
+}).refine(input => !input.enterpriseOps.enabled || enterpriseJwtSecretSchema.safeParse(input.auth.secret).success, { path: ['auth', 'secret'], message: 'Enterprise mode requires a random, non-default JWT secret of at least 32 characters' })
 
 export class AppConfig extends createZodDto(appConfigSchema) { }
 

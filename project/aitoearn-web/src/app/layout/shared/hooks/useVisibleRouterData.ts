@@ -3,8 +3,10 @@
  */
 'use client'
 
-import { visibleRouterData } from '@/app/layout/routerData'
+import { enterpriseRouterItem, visibleRouterData } from '@/app/layout/routerData'
+import { useNavigationLogic } from './useNavigationLogic'
 
 export function useVisibleRouterData() {
-  return visibleRouterData
+  const { currRouter } = useNavigationLogic()
+  return currRouter === '/enterprise' ? [enterpriseRouterItem] : visibleRouterData
 }

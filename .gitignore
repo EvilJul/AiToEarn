@@ -45,3 +45,12 @@ public/bin/*
 
 sh/*
 project/web/.cursor/
+
+# Local pnpm installation cache
+.pnpm-store/
+
+# Local UI verification evidence
+/output/playwright/
+
+# Local codegraph index
+.codegraph/

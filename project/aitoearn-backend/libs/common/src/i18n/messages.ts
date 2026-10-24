@@ -673,4 +673,36 @@ export const messages: Record<ResponseCode, Record<Locale, MessageValue>> = {
     'en-US': 'Relay server unavailable',
     'zh-CN': '中转服务器不可用',
   },
+  [ResponseCode.EnterpriseDisabled]: {
+    'en-US': 'Enterprise workspace is disabled',
+    'zh-CN': '企业工作台未启用',
+  },
+  [ResponseCode.EnterpriseAccessDenied]: {
+    'en-US': 'Enterprise access denied',
+    'zh-CN': '无权访问此企业资源',
+  },
+  [ResponseCode.EnterpriseVersionConflict]: {
+    'en-US': 'This record changed. Refresh and try again.',
+    'zh-CN': '记录已变更，请刷新后重试',
+  },
+  [ResponseCode.EnterpriseInvalidOperation]: {
+    'en-US': 'This operation is not available in the current state',
+    'zh-CN': '当前状态不允许此操作',
+  },
+  [ResponseCode.EnterpriseKnowledgeInvalid]: {
+    'en-US': 'Approved knowledge is missing, withdrawn or expired',
+    'zh-CN': '引用资料未批准、已撤回或已过期',
+  },
+  [ResponseCode.EnterpriseContentNotApproved]: {
+    'en-US': 'Content is not approved or has changed',
+    'zh-CN': '内容尚未批准或已变更，请重新审核',
+  },
+  [ResponseCode.EnterpriseCapabilityUnavailable]: {
+    'en-US': 'This capability has not been enabled or verified',
+    'zh-CN': '此能力尚未启用或验证，请使用人工流程',
+  },
+  [ResponseCode.EnterpriseResultUnknown]: {
+    'en-US': 'Publication result is unknown. Verify before retrying.',
+    'zh-CN': '发布结果未知，请先核验再决定是否重试',
+  },
 }

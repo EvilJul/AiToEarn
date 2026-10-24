@@ -429,3 +429,9 @@ export function PublishWithProgress() {
 
 **版本**: 1.0.0  
 **最后更新**: 2025-12-01
+
+## 企业工作台适配
+
+`../enterpriseAdapter.ts` 提供当前网页 API 的来源、权限和协议声明检查。原插件不因版本号较高就获得企业审核能力；多扩展同时存在时要求显式选择，不覆盖 window.AIToEarnPlugin。无插件、站点未授权、协议不兼容或检测超时均保留人工素材包路径。
+
+企业扩展命名空间为 window.AiToEarnEnterpriseExtension，协议版本 1；能力声明不能替代服务端开关、账号校验和真实平台联调。该适配器目前仅用于发现与诊断，不将未知扩展当作已可自动执行。

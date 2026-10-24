@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { EnterprisePlanInput, EnterprisePlanResult } from '@yikart/aitoearn-ai-shared'
 import { AxiosRequestConfig } from 'axios'
 import {
   CreateDraftGenerationResponse,
@@ -11,6 +12,10 @@ import { BaseService } from './base.service'
 
 @Injectable()
 export class AiService extends BaseService {
+  async planEnterprise(data: EnterprisePlanInput): Promise<EnterprisePlanResult> {
+    return this.request<EnterprisePlanResult>('/internal/ai/draft-generation/enterprise-plan', { method: 'POST', data })
+  }
+
   async createDraftV2(data: CreateDraftV2Request): Promise<CreateDraftGenerationResponse> {
     const url = `/internal/ai/draft-generation/v2`
     const config: AxiosRequestConfig = {

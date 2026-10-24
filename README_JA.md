@@ -15,6 +15,12 @@ AiToEarnは**AI自動化**を通じて、クリエイター、ブランド、企
 対応チャンネル：
 抖音（Douyin）、小紅書（Rednote）、快手（Kuaishou）、bilibili、視頻号（WeChat Channels）、微信公式アカウント（WeChat Official Accounts）、TikTok、YouTube、Facebook、Instagram、Threads、Twitter（X）、Pinterest、LinkedIn
 
+## 企業向け小紅書ワークスペース
+
+企業モードは初期状態では無効です。メンバー権限、企業ナレッジの版管理、地域・業界別の企画、図文の編集と承認、承認済み素材の出力、手動投稿の確認、問い合わせ・見込み客管理、営業への引き継ぎとフォローアップに対応します。既存のマルチプラットフォーム機能は引き続き利用できます。ブラウザー実行は初期状態では無効で、拡張機能と自動メッセージの接続はそれぞれ別途必要です。AI 資料構成には設定済みモデルサービスへの接続と、担当者による生成タスクの開始が必要です。[企業運用ガイド](docs/secondary-development/enterprise-handbook.md)と [Docker 設定](DOCKER_DEPLOYMENT_EN.md)をご確認ください。
+
+企業向け作成では設定済みのプランナーモデルで承認済み資料の原文を構成し、生成元・使用量・未確定費用を記録したうえで人による審査を行えます。
+
 ## 特別なご支援に感謝 ❤️
 
 <table align="center">

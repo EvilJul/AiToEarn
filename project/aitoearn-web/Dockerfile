@@ -17,6 +17,9 @@ RUN pnpm install --frozen-lockfile --prod=false
 FROM base AS builder
 WORKDIR /app
 
+ARG NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED=false
+ENV NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED=$NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 

@@ -25,6 +25,6 @@ import { DraftGenerationService } from './draft-generation.service'
     DraftGenerationConsumer,
     DraftGenerationLowPriorityConsumer,
   ],
-  exports: [DraftGenerationService, DraftGenerationMemoryService],
+  exports: [DraftGenerationPlannerService, DraftGenerationService, DraftGenerationMemoryService],
 })
 export class DraftGenerationModule {}

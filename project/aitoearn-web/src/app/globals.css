@@ -57,6 +57,9 @@ button {
   --color-info-foreground: var(--info-foreground);
   --color-brand-purple: var(--brand-purple);
   --color-brand-cyan: var(--brand-cyan);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-action-cyan: var(--brand-action-cyan);
+  --color-brand-action-purple: var(--brand-action-purple);
   --color-gradient-foreground: var(--gradient-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -78,10 +81,13 @@ button {
 }
 
 :root {
-  --gradientBackColor: linear-gradient(to right in oklch, var(--brand-purple), var(--brand-cyan));
+  --gradientBackColor: linear-gradient(to right in oklch, var(--brand-action-purple), var(--brand-action-cyan));
   /* 品牌色 */
   --brand-purple: oklch(0.74 0.17 3);
   --brand-cyan: oklch(0.71 0.17 294);
+  --brand-action-purple: oklch(0.52 0.17 3);
+  --brand-action-cyan: oklch(0.52 0.17 294);
+  --brand-ink: var(--brand-action-cyan);
   --gradient-foreground: oklch(0.985 0 0);
   /* Section 交替背景色 */
   --section-alt-bg: #f8f9fa;
@@ -111,7 +117,7 @@ button {
   --info-foreground: oklch(0.985 0 0);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: var(--brand-cyan);
+  --ring: var(--brand-ink);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -128,6 +134,7 @@ button {
 }
 
 .dark {
+  --brand-ink: var(--brand-cyan);
   --gradient-foreground: oklch(0.985 0 0);
   --section-alt-bg: rgba(255, 255, 255, 0.03);
   --background: oklch(0.145 0 0);

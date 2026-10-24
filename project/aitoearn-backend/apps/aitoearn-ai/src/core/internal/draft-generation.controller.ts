@@ -1,7 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
+import { EnterprisePlanInput, EnterprisePlanResult } from '@yikart/aitoearn-ai-shared'
 import { Internal } from '@yikart/aitoearn-auth'
 import { ApiDoc } from '@yikart/common'
+import { DraftGenerationPlannerService } from '../draft-generation/draft-generation-planner.service'
 import { DraftGenerationService } from '../draft-generation/draft-generation.service'
 import {
   CreateDraftGenerationVo,
@@ -18,8 +20,15 @@ import {
 @Internal()
 export class DraftGenerationInternalController {
   constructor(
+    private readonly planner: DraftGenerationPlannerService,
     private readonly draftGenerationService: DraftGenerationService,
   ) {}
+
+  @ApiDoc({ summary: '企业批准事实编排', body: EnterprisePlanInput.schema, response: EnterprisePlanResult })
+  @Post('ai/draft-generation/enterprise-plan')
+  async enterprisePlan(@Body() body: EnterprisePlanInput) {
+    return this.planner.planEnterprise(body)
+  }
 
   @ApiDoc({
     summary: '生成品牌内容草稿 (V2)',

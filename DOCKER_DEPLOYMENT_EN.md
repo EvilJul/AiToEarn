@@ -137,3 +137,25 @@ Mounted as writable volumes and editable from the Configuration UI. Restart the 
 | `RUSTFS_ACCESS_KEY` / `RUSTFS_SECRET_KEY` | rustfs | RustFS credentials | `rustfsadmin` |
 | `MONGO_URI` / `JWT_SECRET` / `DB_NAME` / `AUTO_LOGIN_TOKEN_PATH` | aitoearn-init | First-start admin initialization and auto-login token | Built-in defaults |
 | `NODE_ENV` / `NEXT_TELEMETRY_DISABLED` | aitoearn-web | Web runtime mode and Next.js telemetry setting | `production` / `1` |
+
+## Optional enterprise workspace
+
+Use frontend and backend images containing this repository's enterprise module. Changing runtime settings on an unrelated published image does not add the custom functionality. Add to the mounted `project/aitoearn-backend/apps/aitoearn-server/config/config.yaml`:
+
+```yaml
+enterpriseOps:
+  enabled: true
+  browserExecutionEnabled: false
+```
+
+The frontend flag is a build argument; changing container runtime environment variables does not change compiled navigation. Build from the repository root:
+
+```bash
+docker build --build-arg NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED=true -t aitoearn-web-enterprise:local ./project/aitoearn-web
+```
+
+Point Compose at the corresponding source-built frontend and backend images. For local tags, set the applicable `pull_policy` to `never` to avoid replacing them with other images. The backend must also contain the enterprise module. Keep the existing database, configuration mounts and China/international credential matching rules.
+
+Browser execution remains disabled until the extension protocol and enterprise account conditions are accepted. Approved material packages and manual consultation records can be used first; model generation and automated messaging are separate integrations. See the [enterprise handbook](docs/secondary-development/enterprise-handbook.md).
+
+Enterprise mode requires individual member sign-in. Set `auth.secret` to random non-default material of at least 32 characters, consistent with the service that issues login tokens; built-in placeholders cannot enable enterprise mode. Enterprise builds do not pass `AUTO_LOGIN_TOKEN` to browsers. The backend rejects the reserved `admin@aitoearn.local` shared identity, marked sharedBootstrap tokens and API keys owned by that reserved user. Configure normal email or OAuth sign-in first. When migrating a single-user deployment, revoke distributed shared credentials, clear stale browser sign-in and explicitly assign any legacy resources; data is not transferred automatically.

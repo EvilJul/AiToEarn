@@ -69,7 +69,7 @@ async function main() {
   }
 
   const token = jwt.sign(
-    { id: user._id.toString(), mail: user.mail, name: user.name },
+    { id: user._id.toString(), mail: user.mail, name: user.name, sharedBootstrap: true },
     JWT_SECRET,
     { expiresIn: '100y' },
   )

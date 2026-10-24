@@ -18,6 +18,7 @@ export interface ThumbnailVo {
  * UploadToOssOptions 数据结构。
  */
 export interface UploadToOssOptions {
+  onUploaded?: (asset: { id: string, url: string }) => void
   onProgress?: (prog: number) => void
   publicUploadId?: string
   signal?: AbortSignal

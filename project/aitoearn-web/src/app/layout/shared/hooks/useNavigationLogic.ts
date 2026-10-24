@@ -22,7 +22,7 @@ export function useNavigationLogic() {
 
   const rootRoute = route[0]
   const isAuthPage = HIDDEN_NAV_ROUTES.includes(rootRoute)
-  const isBottomNavHidden = isAuthPage
+  const isBottomNavHidden = isAuthPage || rootRoute === 'enterprise'
 
   return { currRouter, isAuthPage, isBottomNavHidden, route }
 }

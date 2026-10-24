@@ -15,6 +15,12 @@ AiToEarn 通过 **AI Agent自动化**，帮助 OPC（一人公司）、创作者
 支持渠道：
 抖音、小红书（Rednote）、快手、哔哩哔哩、视频号、公众号、TikTok、YouTube、Facebook、Instagram、Threads、Twitter（X）、Pinterest、LinkedIn
 
+## 企业小红书工作台
+
+可选企业模式默认关闭，提供成员权限、企业知识版本、地域行业选题、图文编辑与审核、已审素材包、人工发布核验，以及咨询线索、销售接管和跟进。原多平台入口继续保留。浏览器自动执行协议默认关闭，独立扩展及自动消息渠道需分别接入；AI 资料编排需要现有模型服务配置可用，并由运营主动提交生成任务。详见[企业操作手册](docs/secondary-development/enterprise-handbook.md)及 [Docker 配置](DOCKER_DEPLOYMENT_CN.md)。
+
+企业创作支持复用已配置的规划模型编排批准资料原文，保留生成来源、调用计量及未知费用，并继续执行人工审核。
+
 ## 特别感谢 ❤️
 
 <table align="center">

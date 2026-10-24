@@ -1,0 +1,81 @@
+{
+  "name": "AiToEarn Extension",
+  "version": "3.3.11",
+  "manifest_version": 3,
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "windows",
+    "sidePanel",
+    "storage",
+    "alarms",
+    "notifications",
+    "scripting",
+    "downloads",
+    "debugger",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "js/background.js",
+    "type": "module"
+  },
+  "content_script_matches": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/agent_content_script.js"
+      ],
+      "world": null
+    },
+    {
+      "matches": [
+        "https://*.douyin.com/*",
+        "https://creator.douyin.com/*",
+        "https://*.xiaohongshu.com/*",
+        "https://creator.xiaohongshu.com/*",
+        "https://edith.xiaohongshu.com/*",
+        "https://*.xhscdn.com/*",
+        "https://*.myqcloud.com/*",
+        "https://aitoearn.ai/*",
+        "https://aitoearn.cn/*"
+      ],
+      "js": [
+        "js/content_script.js"
+      ],
+      "world": null
+    },
+    {
+      "matches": [
+        "http://127.0.0.1:8080/*",
+        "http://localhost:8080/*",
+        "http://localhost:6060/*",
+        "http://localhost:6061/*",
+        "http://127.0.0.1:5500/*",
+        "https://aitoearn.ai/*",
+        "https://www.dev.aitoearn.ai/*",
+        "https://dev.aitoearn.ai/*",
+        "https://dev.aitoearn.cn/*",
+        "https://aitoearn.cn/*",
+        "https://aitoearn.ai/*"
+      ],
+      "js": [
+        "js/content_script_home.js"
+      ],
+      "world": null
+    }
+  ],
+  "web_accessible_matches": [],
+  "license_entries": [
+    "js/background.js.LICENSE.txt",
+    "js/vendor-lodash.js.LICENSE.txt",
+    "js/vendor-react.js.LICENSE.txt",
+    "js/vendor-ui.js.LICENSE.txt"
+  ],
+  "sha256": "801a67f273c1bf6f08cf4892aec966c9b428c539795e7913fffbee718ebe28cf"
+}

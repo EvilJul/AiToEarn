@@ -1,0 +1,5 @@
+import type { EnterpriseConversation, EnterpriseExecutor, EnterpriseKnowledge, EnterpriseLead, EnterpriseMember, EnterpriseNotification, EnterprisePublishJob, EnterpriseResource, EnterpriseRevision, EnterpriseTopic, ImageAsset } from '@/api/enterprise/enterprise.types'
+
+export interface FormField { name: string, label: string, type?: 'text' | 'textarea' | 'datetime-local' | 'select' | 'assets', required?: boolean, options?: { value: string, label: string, imageUrl?: string }[], defaultValue?: string, maxLength?: number }
+export interface FormDialogState { title: string, fields: FormField[], submit: (values: Record<string, string>) => Promise<void> }
+export interface WorkspaceData { knowledge: EnterpriseKnowledge[], topics: EnterpriseTopic[], revisions: EnterpriseRevision[], jobs: EnterprisePublishJob[], conversations: EnterpriseConversation[], members: EnterpriseMember[], leads: EnterpriseLead[], notifications: EnterpriseNotification[], executors: EnterpriseExecutor[], resources: EnterpriseResource[], images: ImageAsset[] }

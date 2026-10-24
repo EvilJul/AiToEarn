@@ -137,3 +137,25 @@ docker compose up -d
 | `RUSTFS_ACCESS_KEY` / `RUSTFS_SECRET_KEY` | rustfs | RustFS 访问凭证 | `rustfsadmin` |
 | `MONGO_URI` / `JWT_SECRET` / `DB_NAME` / `AUTO_LOGIN_TOKEN_PATH` | aitoearn-init | 首次启动初始化管理员与自动登录 token | 内置默认值 |
 | `NODE_ENV` / `NEXT_TELEMETRY_DISABLED` | aitoearn-web | Web 运行环境与 Next.js telemetry 设置 | `production` / `1` |
+
+## 可选企业工作台
+
+需使用包含本仓库企业模块的前后端镜像，不能仅依靠修改官方镜像的运行参数启用定制能力。后端挂载的 `project/aitoearn-backend/apps/aitoearn-server/config/config.yaml` 增加：
+
+```yaml
+enterpriseOps:
+  enabled: true
+  browserExecutionEnabled: false
+```
+
+前端开关为构建参数，修改容器运行时 environment 不会改变已经编译的导航。在仓库根目录构建前端：
+
+```bash
+docker build --build-arg NEXT_PUBLIC_ENTERPRISE_OPS_ENABLED=true -t aitoearn-web-enterprise:local ./project/aitoearn-web
+```
+
+部署时将 Compose 的前后端镜像替换为相应源码构建产物；使用本地标签时将对应 `pull_policy` 设为 `never`，防止重新拉取其他镜像。后端也必须包含企业模块。数据库、配置挂载及中国版/国际版 Key 规则保持不变。
+
+浏览器执行默认关闭，只有扩展协议及企业账号条件完成验收后才开启。人工素材包发布与咨询登记可先使用；模型服务与自动消息渠道独立接入。操作说明见[企业手册](docs/secondary-development/enterprise-handbook.md)。
+
+企业模式必须配置独立成员登录：`auth.secret` 至少 32 字符、使用随机值并与签发登录令牌的服务保持一致；内置占位值不能启用企业模式。企业构建不会把 `AUTO_LOGIN_TOKEN` 传入浏览器，后端拒绝 `admin@aitoearn.local` 共享身份及带 sharedBootstrap 标记的初始化令牌（含该保留用户的 API Key）。请先配置正常邮箱或 OAuth 登录。由旧单人部署迁移时，需撤销已分发的共享凭据、清理浏览器旧登录，并显式处理旧资料归属，不默认转移数据。

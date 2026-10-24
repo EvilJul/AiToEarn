@@ -15,6 +15,12 @@ AiToEarn helps OPCs (One-Person Companies), creators, brands, and businesses bui
 Supported Channels:
 Douyin, Xiaohongshu (Rednote), Kuaishou, Bilibili, WeChat Channels, WeChat Official Accounts, TikTok, YouTube, Facebook, Instagram, Threads, Twitter (X), Pinterest, LinkedIn
 
+## Enterprise Xiaohongshu workspace
+
+The optional enterprise mode is disabled by default. It provides member permissions, versioned enterprise knowledge, regional and industry topic planning, note editing and review, approved material packages, manual publication verification, consultation leads, sales takeover and follow-up. Existing multi-platform entry points remain available. Browser execution is disabled by default; an extension and automated messaging channels require separate integration. AI source arrangement requires the existing model service configuration and an operator-submitted generation task. See the [enterprise handbook](docs/secondary-development/enterprise-handbook.md) and [Docker configuration](DOCKER_DEPLOYMENT_EN.md).
+
+Enterprise drafting can reuse the configured planner to arrange approved source paragraphs, retain provenance and usage with unknown costs, and continue through human review.
+
 ## Special Thanks ❤️
 
 <table align="center">
